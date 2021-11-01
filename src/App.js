@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import Title from "./components/Title";
 import Modal from "./components/Modal";
 import EventList from "./components/EventList";
@@ -28,7 +28,7 @@ function App() {
     setShowModal(false);
   };
 
-  const subtitle = "All the latest events in Marioland";
+  const subtitle = "All the latest events in Mario Land";
 
   return (
     <div className="App">
@@ -46,9 +46,9 @@ function App() {
       )}
 
       {showModal && (
-        <Modal handleClose={handleClose}>
+        <Modal handleClose={handleClose} isSalesModal={true}>
           <h2>Terms and Conditions</h2>
-          <p>This are the terms and conditions for Marioland</p>
+          <p>These are the terms and conditions for Mario Land</p>
           <a href="/">find out more...</a>
         </Modal>
       )}
