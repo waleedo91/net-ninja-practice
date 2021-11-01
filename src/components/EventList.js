@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import styles from "./EventList.module.css";
 
 export default function EventLIst({ handleClick, events }) {
@@ -9,6 +9,9 @@ export default function EventLIst({ handleClick, events }) {
           <h2>
             {index} - {e.title}
           </h2>
+          <p>
+            {e.location} - {e.date}
+          </p>
           <button onClick={() => handleClick(e.id)}>Delete Event</button>
         </div>
       ))}

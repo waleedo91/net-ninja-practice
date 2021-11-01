@@ -3,17 +3,19 @@ import Title from "./components/Title";
 import Modal from "./components/Modal";
 import EventList from "./components/EventList";
 import "./App.css";
+import NewEventForm from "./components/NewEventForm";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
   const [showEvents, setShowEvents] = useState(true);
-  const [events, setEvents] = useState([
-    { title: "mario's birthday bash", id: 1 },
-    { title: "bowser's live stream", id: 2 },
-    { title: "race on moo moo farm", id: 3 },
-  ]);
+  const [events, setEvents] = useState([]);
 
-  console.log(showModal);
+  const addEvent = (event) => {
+    setEvents((prev) => {
+      return [...prev, event];
+    });
+    setShowModal(false);
+  };
 
   const handleClick = (id) => {
     setEvents((prevEvents) => {
@@ -22,10 +24,6 @@ function App() {
       });
     });
     console.log(id);
-  };
-
-  const handleClose = () => {
-    setShowModal(false);
   };
 
   const subtitle = "All the latest events in Mario Land";
@@ -46,14 +44,12 @@ function App() {
       )}
 
       {showModal && (
-        <Modal handleClose={handleClose} isSalesModal={true}>
-          <h2>Terms and Conditions</h2>
-          <p>These are the terms and conditions for Mario Land</p>
-          <a href="/">find out more...</a>
+        <Modal isSalesModal={true}>
+          <NewEventForm addEvent={addEvent} />
         </Modal>
       )}
       <div>
-        <button onClick={() => setShowModal(true)}>Show Modal</button>
+        <button onClick={() => setShowModal(true)}>Add New Event</button>
       </div>
     </div>
   );
